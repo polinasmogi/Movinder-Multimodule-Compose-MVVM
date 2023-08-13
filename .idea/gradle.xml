@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="GradleMigrationSettings" migrationVersion="1" />
+  <component name="GradleSettings">
+    <option name="linkedExternalProjectsSettings">
+      <GradleProjectSettings>
+        <option name="testRunner" value="GRADLE" />
+        <option name="distributionType" value="DEFAULT_WRAPPED" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/auth" />
+            <option value="$PROJECT_DIR$/authapi" />
+            <option value="$PROJECT_DIR$/basemovies" />
+            <option value="$PROJECT_DIR$/core" />
+            <option value="$PROJECT_DIR$/core_api" />
+            <option value="$PROJECT_DIR$/core_impl" />
+            <option value="$PROJECT_DIR$/explore" />
+            <option value="$PROJECT_DIR$/explore_api" />
+            <option value="$PROJECT_DIR$/main" />
+            <option value="$PROJECT_DIR$/movies" />
+            <option value="$PROJECT_DIR$/moviesapi" />
+            <option value="$PROJECT_DIR$/partner" />
+            <option value="$PROJECT_DIR$/partner_api" />
+            <option value="$PROJECT_DIR$/profile" />
+            <option value="$PROJECT_DIR$/profile_api" />
+            <option value="$PROJECT_DIR$/registration" />
+            <option value="$PROJECT_DIR$/registrationapi" />
+            <option value="$PROJECT_DIR$/strings" />
+            <option value="$PROJECT_DIR$/ui_atoms" />
+            <option value="$PROJECT_DIR$/uikit" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+    </option>
+  </component>
+</project>

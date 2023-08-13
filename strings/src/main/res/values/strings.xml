@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Movinder</string>
+
+    <!-- Bottom bar navigation items -->
+    <string name="nav_item_explore">Explore</string>
+    <string name="nav_item_partner">Partner</string>
+    <string name="nav_item_profile">Profile</string>
+</resources>
