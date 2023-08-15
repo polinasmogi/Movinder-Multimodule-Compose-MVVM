@@ -5,10 +5,6 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import com.polinasmogi.core_api.mediator.AppWithFacade
 import com.polinasmogi.explore_api.ExploreFeatureEntry
 import com.polinasmogi.main.di.MainComponent
@@ -27,27 +23,11 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         MainComponent.create((application as AppWithFacade).getFacade()).inject(this)
         setContent {
-            MovinderTheme(darkTheme = true) {
+            MovinderTheme() {
                 Surface(color = MaterialTheme.colorScheme.background) {
                     MainScreen(exploreEntry, partnerEntry, profileEntry)
                 }
             }
         }
-    }
-}
-
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    MovinderTheme {
-        Greeting("Android")
     }
 }
