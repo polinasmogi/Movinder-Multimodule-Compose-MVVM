@@ -1,6 +1,5 @@
 package com.polinasmogi.explore.ui
 
-import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxHeight
@@ -12,14 +11,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.material3.Text
 import androidx.compose.runtime.getValue
-import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.polinasmogi.core_api.mediator.AppWithFacade
 import com.polinasmogi.explore.data.model.Doc
-
 import com.polinasmogi.explore.viewmodel.ExploreUiState
 import com.polinasmogi.explore.viewmodel.ExploreViewModel
-import com.polinasmogi.explore.viewmodel.ExploreViewModelFactory
 
 @Composable
 fun ExploreScreen(
@@ -57,7 +52,7 @@ fun MoviesList(
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        LazyColumn() {
+        LazyColumn {
             items(movies) {
                 it.name?.let { it1 -> Text(text = it1) }
             }

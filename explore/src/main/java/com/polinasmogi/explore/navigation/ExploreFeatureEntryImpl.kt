@@ -4,18 +4,13 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
-import com.polinasmogi.explore.di.DaggerExploreComponent
 import com.polinasmogi.explore.di.ExploreComponent
-
 import com.polinasmogi.explore.ui.ExploreScreen
 import com.polinasmogi.explore.viewmodel.ExploreViewModel
-import com.polinasmogi.explore.viewmodel.ExploreViewModelFactory
 import com.polinasmogi.explore_api.ExploreFeatureEntry
 import javax.inject.Inject
 
-class ExploreFeatureEntryImpl @Inject constructor(
-        private val viewModelFactory: ExploreViewModelFactory
-    ) : ExploreFeatureEntry {
+class ExploreFeatureEntryImpl @Inject constructor(): ExploreFeatureEntry {
 
     private val baseRoute = "explore"
 
@@ -24,8 +19,7 @@ class ExploreFeatureEntryImpl @Inject constructor(
         navController: NavHostController,
         modifier: Modifier
     ) {
-        ExploreComponent.init()
-        val viewModel = viewModelFactory.create(ExploreViewModel::class.java)
+        val viewModel = ExploreComponent.init().viewModelFactory.create(ExploreViewModel::class.java)
         navGraphBuilder.composable(baseRoute) {
             ExploreScreen(viewModel = viewModel)
         }
