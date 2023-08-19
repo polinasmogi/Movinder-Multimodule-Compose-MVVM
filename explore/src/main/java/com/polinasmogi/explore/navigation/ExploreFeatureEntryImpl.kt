@@ -1,42 +1,33 @@
 package com.polinasmogi.explore.navigation
 
-import android.os.Bundle
-import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
-import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
+import com.polinasmogi.explore.di.DaggerExploreComponent
+import com.polinasmogi.explore.di.ExploreComponent
+
 import com.polinasmogi.explore.ui.ExploreScreen
+import com.polinasmogi.explore.viewmodel.ExploreViewModel
+import com.polinasmogi.explore.viewmodel.ExploreViewModelFactory
 import com.polinasmogi.explore_api.ExploreFeatureEntry
 import javax.inject.Inject
 
-class ExploreFeatureEntryImpl @Inject constructor() : ExploreFeatureEntry {
-//    , RootComponentHolder<ExploreComponent> {
+class ExploreFeatureEntryImpl @Inject constructor(
+        private val viewModelFactory: ExploreViewModelFactory
+    ) : ExploreFeatureEntry {
 
     private val baseRoute = "explore"
-
-    override fun exploreRoute(): String = baseRoute
 
     override fun registerGraph(
         navGraphBuilder: NavGraphBuilder,
         navController: NavHostController,
         modifier: Modifier
     ) {
+        ExploreComponent.init()
+        val viewModel = viewModelFactory.create(ExploreViewModel::class.java)
         navGraphBuilder.composable(baseRoute) {
-            ExploreScreen()
+            ExploreScreen(viewModel = viewModel)
         }
     }
-
-//    override val rootRoute: String
-//        get() = baseRoute
-//
-//    @Composable
-//    override fun rootComponent(rootEntry: NavBackStackEntry, arguments: Bundle?): ExploreComponent {
-//        val facade = (LocalContext.current as AppWithFacade).getFacade()
-//        return rememberScoped(storeOwner = rootEntry) {
-//            DaggerExploreComponent.builder().providersFacade(facade).build()
-//        }
-//    }
 }

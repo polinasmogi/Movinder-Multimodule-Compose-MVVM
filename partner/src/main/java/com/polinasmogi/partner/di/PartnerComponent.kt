@@ -6,7 +6,7 @@ import javax.inject.Singleton
 
 @Singleton
 @Component(
-    modules = [PartnerModule::class],
+    modules = [PartnerExternelModule::class],
     dependencies = [ProvidersFacade::class]
 )
 interface PartnerComponent

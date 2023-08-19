@@ -32,7 +32,6 @@ android {
 
 dependencies {
 
-    implementation project(path: ':basemovies')
     implementation project(path: ':uikit')
     implementation project(path: ':ui_atoms')
 
