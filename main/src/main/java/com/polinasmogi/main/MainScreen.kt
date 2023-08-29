@@ -11,7 +11,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.compose.rememberNavController
-import com.polinasmogi.core_api.mediator.FeatureEntry
 import com.polinasmogi.explore_api.ExploreFeatureEntry
 import com.polinasmogi.main.navigation.BottomNavigationBar
 import com.polinasmogi.main.navigation.Configurations

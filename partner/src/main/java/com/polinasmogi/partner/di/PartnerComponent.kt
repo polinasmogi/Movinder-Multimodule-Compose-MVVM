@@ -7,6 +7,6 @@ import javax.inject.Singleton
 @Singleton
 @Component(
     modules = [PartnerExternelModule::class],
-    dependencies = [ProvidersFacade::class]
+    dependencies = [com.polinasmogi.core_api.mediator.ProvidersFacade::class]
 )
 interface PartnerComponent

@@ -1,6 +1,5 @@
 package com.polinasmogi.movinder
 
-import android.app.Application
 import android.content.Context
 import com.polinasmogi.core_api.mediator.AppProvider
 import dagger.BindsInstance
@@ -9,16 +8,16 @@ import javax.inject.Singleton
 
 @Singleton
 @Component
-interface AppComponent : AppProvider {
+interface AppComponent : com.polinasmogi.core_api.mediator.AppProvider {
 
     companion object {
 
-        private var appComponent: AppProvider? = null
+        private var appComponent: com.polinasmogi.core_api.mediator.AppProvider? = null
 
-        fun create(application: Application): AppProvider {
+        fun create(applicationContext: Context): com.polinasmogi.core_api.mediator.AppProvider {
             return appComponent ?: DaggerAppComponent
                 .builder()
-                .application(application.applicationContext)
+                .application(applicationContext)
                 .build().also {
                     appComponent = it
                 }

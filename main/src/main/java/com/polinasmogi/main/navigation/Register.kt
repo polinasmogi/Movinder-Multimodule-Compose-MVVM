@@ -6,7 +6,7 @@ import androidx.navigation.NavHostController
 import com.polinasmogi.core_api.mediator.FeatureEntry
 
 fun NavGraphBuilder.register(
-    featureMediator: FeatureEntry,
+    featureMediator: com.polinasmogi.core_api.mediator.FeatureEntry,
     navController: NavHostController,
     modifier: Modifier = Modifier
 ) {

@@ -1,19 +1,19 @@
 package com.polinasmogi.profile.navigation
 
-import android.os.Bundle
-import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
-import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
+import com.polinasmogi.core_api.mediator.AppProvider
+import com.polinasmogi.profile.di.ProfileComponent
 import com.polinasmogi.profile.ui.ProfileScreen
+import com.polinasmogi.profile.viewmodel.ProfileViewModel
 import com.polinasmogi.profile_api.ProfileFeatureEntry
 import javax.inject.Inject
 
-class ProfileFeatureEntryImpl @Inject constructor() : ProfileFeatureEntry {
-//    , RootComponentHolder<ProfileComponent>
+class ProfileFeatureEntryImpl @Inject constructor(
+    private val appProvider: com.polinasmogi.core_api.mediator.AppProvider
+) : ProfileFeatureEntry {
 
     private val baseRoute = "profile"
 
@@ -25,18 +25,9 @@ class ProfileFeatureEntryImpl @Inject constructor() : ProfileFeatureEntry {
         modifier: Modifier
     ) {
         navGraphBuilder.composable(baseRoute) {
-            ProfileScreen()
+            val viewModel = ProfileComponent.init(appProvider).viewModelFactory
+                .create(ProfileViewModel::class.java)
+            ProfileScreen(viewModel = viewModel)
         }
     }
-
-//    override val rootRoute: String
-//        get() = baseRoute
-//
-//    @Composable
-//    override fun rootComponent(rootEntry: NavBackStackEntry, arguments: Bundle?): ProfileComponent {
-//        val facade = (LocalContext.current as AppWithFacade).getFacade()
-//        return rememberScoped(storeOwner = rootEntry) {
-//            DaggerProfileComponent.builder().providersFacade(facade).build()
-//        }
-//    }
 }

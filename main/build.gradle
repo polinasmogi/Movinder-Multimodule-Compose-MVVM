@@ -6,11 +6,11 @@ plugins {
 
 android {
     namespace 'com.polinasmogi.main'
-    compileSdk 33
+    compileSdk 34
 
     defaultConfig {
         minSdk 29
-        targetSdk 33
+        targetSdk 34
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
@@ -23,11 +23,14 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_18
+        targetCompatibility JavaVersion.VERSION_18
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion '1.4.4'
     }
     kotlinOptions {
-        jvmTarget = '1.8'
+        jvmTarget = '18'
     }
     buildFeatures {
         compose true
@@ -38,7 +41,7 @@ dependencies {
 
     implementation project(path: ':ui_atoms')
     implementation project(path: ':strings')
-    implementation project(path: ':core_api')
+    implementation project(path: ':core:core_api')
     implementation project(path: ':explore_api')
     implementation project(path: ':partner_api')
     implementation project(path: ':profile_api')

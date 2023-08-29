@@ -1,23 +1,25 @@
 package com.polinasmogi.profile.ui
 
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxHeight
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.Modifier
+import androidx.compose.runtime.getValue
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.polinasmogi.profile.viewmodel.ProfileUiState
+import com.polinasmogi.profile.viewmodel.ProfileViewModel
 
 @Composable
-fun ProfileScreen() {
-    Column(
-        modifier = Modifier
-            .fillMaxWidth()
-            .fillMaxHeight(),
-        verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        Text(text = "Profile screen")
+fun ProfileScreen(
+    viewModel: ProfileViewModel
+) {
+    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+
+    when (uiState) {
+        ProfileUiState.Loading -> {
+//            Loading()
+        }
+        is ProfileUiState.MovieList -> {
+            MovieList((uiState as ProfileUiState.MovieList).movies)
+        }
+        is ProfileUiState.Error -> {}
+        is ProfileUiState.NoMovies -> {}
     }
 }

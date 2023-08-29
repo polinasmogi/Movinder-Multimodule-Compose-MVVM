@@ -21,7 +21,7 @@ class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        MainComponent.create((application as AppWithFacade).getFacade()).inject(this)
+        MainComponent.create((application as com.polinasmogi.core_api.mediator.AppWithFacade).getFacade()).inject(this)
         setContent {
             MovinderTheme() {
                 Surface(color = MaterialTheme.colorScheme.background) {

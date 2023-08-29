@@ -7,6 +7,7 @@
         <option name="testRunner" value="GRADLE" />
         <option name="distributionType" value="DEFAULT_WRAPPED" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="gradleJvm" value="corretto-18" />
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
@@ -14,13 +15,22 @@
             <option value="$PROJECT_DIR$/auth" />
             <option value="$PROJECT_DIR$/authapi" />
             <option value="$PROJECT_DIR$/core" />
-            <option value="$PROJECT_DIR$/core_api" />
-            <option value="$PROJECT_DIR$/core_impl" />
+            <option value="$PROJECT_DIR$/core/core_api" />
+            <option value="$PROJECT_DIR$/core/core_factory" />
+            <option value="$PROJECT_DIR$/core/core_impl" />
+            <option value="$PROJECT_DIR$/database" />
+            <option value="$PROJECT_DIR$/database/database_api" />
+            <option value="$PROJECT_DIR$/database/database_factory" />
+            <option value="$PROJECT_DIR$/database/database_impl" />
+            <option value="$PROJECT_DIR$/database_factory" />
             <option value="$PROJECT_DIR$/explore" />
             <option value="$PROJECT_DIR$/explore_api" />
+            <option value="$PROJECT_DIR$/explore_impl" />
             <option value="$PROJECT_DIR$/main" />
-            <option value="$PROJECT_DIR$/movies" />
-            <option value="$PROJECT_DIR$/moviesapi" />
+            <option value="$PROJECT_DIR$/movies_api" />
+            <option value="$PROJECT_DIR$/movies_factory" />
+            <option value="$PROJECT_DIR$/movies_impl" />
+            <option value="$PROJECT_DIR$/myapplication" />
             <option value="$PROJECT_DIR$/partner" />
             <option value="$PROJECT_DIR$/partner_api" />
             <option value="$PROJECT_DIR$/profile" />
