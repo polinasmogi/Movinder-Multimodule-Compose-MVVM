@@ -16,7 +16,8 @@ class PartnerFeatureEntryImpl @Inject constructor() : PartnerFeatureEntry {
     override fun registerGraph(
         navGraphBuilder: NavGraphBuilder,
         navController: NavHostController,
-        modifier: Modifier
+        modifier: Modifier,
+        navigateTo: (Int) -> Unit
     ) {
         navGraphBuilder.composable(baseRoute) {
             PartnerScreen()

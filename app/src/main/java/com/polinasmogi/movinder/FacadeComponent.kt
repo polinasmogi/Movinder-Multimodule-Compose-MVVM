@@ -4,6 +4,7 @@ import android.app.Application
 import com.polinasmogi.core_api.mediator.AppProvider
 import com.polinasmogi.core_api.mediator.ProvidersFacade
 import com.polinasmogi.explore.di.ExploreExternalModule
+import com.polinasmogi.movie_info_impl.di.MovieInfoExternalModule
 import com.polinasmogi.partner.di.PartnerExternelModule
 import com.polinasmogi.profile.di.ProfileExternalModule
 import dagger.Component
@@ -16,6 +17,7 @@ import javax.inject.Singleton
         ExploreExternalModule::class,
         PartnerExternelModule::class,
         ProfileExternalModule::class,
+        MovieInfoExternalModule::class
     ]
 )
 interface FacadeComponent : ProvidersFacade {

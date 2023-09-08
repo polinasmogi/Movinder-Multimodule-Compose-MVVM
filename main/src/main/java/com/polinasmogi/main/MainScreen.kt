@@ -14,6 +14,7 @@ import androidx.navigation.compose.rememberNavController
 import com.polinasmogi.explore_api.ExploreFeatureEntry
 import com.polinasmogi.main.navigation.BottomNavigationBar
 import com.polinasmogi.main.navigation.Configurations
+import com.polinasmogi.movie_info_api.MovieInfoFeatureEntry
 import com.polinasmogi.partner_api.PartnerFeatureEntry
 import com.polinasmogi.profile_api.ProfileFeatureEntry
 
@@ -23,7 +24,8 @@ import com.polinasmogi.profile_api.ProfileFeatureEntry
 fun MainScreen(
     exploreEntry: ExploreFeatureEntry,
     partnerEntry: PartnerFeatureEntry,
-    profileEntry: ProfileFeatureEntry
+    profileEntry: ProfileFeatureEntry,
+    movieInfoEntry: MovieInfoFeatureEntry
 ) {
     val snackbarHostState = remember { SnackbarHostState() }
     val navController = rememberNavController()
@@ -41,8 +43,10 @@ fun MainScreen(
             exploreEntry = exploreEntry,
             partnerEntry = partnerEntry,
             profileEntry = profileEntry,
+            movieInfoEntry = movieInfoEntry,
             navController = navController,
             modifier = Modifier.padding(it)
         )
     }
 }
+

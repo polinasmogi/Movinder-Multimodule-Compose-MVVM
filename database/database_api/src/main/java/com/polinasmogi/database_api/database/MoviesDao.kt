@@ -2,15 +2,16 @@ package com.polinasmogi.database_api.database
 
 import androidx.room.Dao
 import androidx.room.Insert
+import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.polinasmogi.database_api.dto.MovieDto
+import com.polinasmogi.database_api.dto.LikedMovieEntity
 
 @Dao
 interface MoviesDao {
 
     @Query("SELECT * FROM MOVIES")
-    suspend fun getMovies(): List<MovieDto>
+    suspend fun getLikedMovies(): List<LikedMovieEntity>
 
-    @Insert
-    suspend fun insertMovie(movie: MovieDto)
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    suspend fun insertMovie(movie: LikedMovieEntity)
 }

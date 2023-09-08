@@ -27,6 +27,9 @@
             <option value="$PROJECT_DIR$/explore_api" />
             <option value="$PROJECT_DIR$/explore_impl" />
             <option value="$PROJECT_DIR$/main" />
+            <option value="$PROJECT_DIR$/movie_info" />
+            <option value="$PROJECT_DIR$/movie_info/movie_info_api" />
+            <option value="$PROJECT_DIR$/movie_info/movie_info_impl" />
             <option value="$PROJECT_DIR$/movies_api" />
             <option value="$PROJECT_DIR$/movies_factory" />
             <option value="$PROJECT_DIR$/movies_impl" />

@@ -9,6 +9,7 @@ interface FeatureEntry {
     fun registerGraph(
         navGraphBuilder: NavGraphBuilder,
         navController: NavHostController,
-        modifier: Modifier = Modifier
+        modifier: Modifier = Modifier,
+        navigateTo: (Int) -> Unit
     )
 }

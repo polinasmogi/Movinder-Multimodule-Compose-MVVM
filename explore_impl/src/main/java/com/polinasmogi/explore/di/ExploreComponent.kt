@@ -16,7 +16,7 @@ interface ExploreComponent : MoviesProvider {
 
     companion object {
 
-        fun init(appProvider: com.polinasmogi.core_api.mediator.AppProvider): ExploreComponent {
+        fun init(appProvider: AppProvider): ExploreComponent {
             return DaggerExploreComponent.builder()
                 .moviesProvider(MoviesProviderFactory.createMoviesProvider(appProvider))
                 .build()

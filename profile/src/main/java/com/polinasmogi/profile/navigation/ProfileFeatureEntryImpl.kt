@@ -12,7 +12,7 @@ import com.polinasmogi.profile_api.ProfileFeatureEntry
 import javax.inject.Inject
 
 class ProfileFeatureEntryImpl @Inject constructor(
-    private val appProvider: com.polinasmogi.core_api.mediator.AppProvider
+    private val appProvider: AppProvider
 ) : ProfileFeatureEntry {
 
     private val baseRoute = "profile"
@@ -22,7 +22,8 @@ class ProfileFeatureEntryImpl @Inject constructor(
     override fun registerGraph(
         navGraphBuilder: NavGraphBuilder,
         navController: NavHostController,
-        modifier: Modifier
+        modifier: Modifier,
+        navigateTo: (Int) -> Unit
     ) {
         navGraphBuilder.composable(baseRoute) {
             val viewModel = ProfileComponent.init(appProvider).viewModelFactory

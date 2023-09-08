@@ -1,8 +1,10 @@
 package com.polinasmogi.profile.viewmodel
 
+import com.polinasmogi.moviesapi.model.MovieModel
+
 data class ProfileViewModelState(
     val loading: Boolean = false,
-    val movies: List<String?>? = null,
+    val movies: List<MovieModel>? = null,
     val errorMessage: String = ""
 ) {
 

@@ -1,8 +1,10 @@
 package com.polinasmogi.explore.interactor
 
+import com.polinasmogi.moviesapi.model.MovieModel
+
 interface ExploreInteractor {
 
-    suspend fun getMovies(): com.polinasmogi.moviesapi.model.MoviesResponse
+    suspend fun getMovies(): List<MovieModel>
 
-    suspend fun onMovieLiked(movie: com.polinasmogi.moviesapi.model.Doc)
+    suspend fun onMovieLiked(movie: MovieModel)
 }

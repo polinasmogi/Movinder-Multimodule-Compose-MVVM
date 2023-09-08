@@ -5,14 +5,14 @@ import com.polinasmogi.main.MainActivity
 import dagger.Component
 
 @Component(
-    dependencies = [com.polinasmogi.core_api.mediator.ProvidersFacade::class],
+    dependencies = [ProvidersFacade::class],
     modules = [MainModule::class]
 )
 interface MainComponent {
 
     companion object {
 
-        fun create(providersFacade: com.polinasmogi.core_api.mediator.ProvidersFacade): MainComponent {
+        fun create(providersFacade: ProvidersFacade): MainComponent {
             return DaggerMainComponent.builder().providersFacade(providersFacade).build()
         }
     }

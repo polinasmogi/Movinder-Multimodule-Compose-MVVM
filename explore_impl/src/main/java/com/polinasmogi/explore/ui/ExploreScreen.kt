@@ -1,17 +1,20 @@
 package com.polinasmogi.explore.ui
 
 import androidx.activity.compose.BackHandler
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.Modifier
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.polinasmogi.explore.viewmodel.ExploreUiState
 import com.polinasmogi.explore.viewmodel.ExploreViewModel
-import com.polinasmogi.moviesapi.ui.MovieInfoMediator
 
 @Composable
 fun ExploreScreen(
     viewModel: ExploreViewModel,
-    mediator: MovieInfoMediator
+    onMovieClick: (Int) -> Unit
 ) {
 
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
@@ -22,7 +25,7 @@ fun ExploreScreen(
         }
         is ExploreUiState.MovieInfo -> {
             val state = uiState as ExploreUiState.MovieInfo
-            mediator.ShowMovieInfo(movie = state.movie)
+//            mediator.ShowMovieInfo(movie = state.movie)
             BackHandler {
                 viewModel.onBackPressed()
             }
@@ -33,12 +36,21 @@ fun ExploreScreen(
                 movie = state.movie,
                 onYesClick = { viewModel.onYesClicked(state.movie, state.movieIndex) },
                 onNoCLick = { viewModel.onNoClicked(state.movieIndex) },
-                onMovieClick = { viewModel.onMovieClick(state.movie) }
+                onMovieClick = {
+                    onMovieClick.invoke(state.movie.id)
+//                    viewModel.onMovieClick(state.movie)
+                }
             )
         }
         is ExploreUiState.NoMovies -> {
             //show empty list
         }
-        is ExploreUiState.Error -> { }
+        is ExploreUiState.Error -> {
+            val state = uiState as ExploreUiState.Error
+            Text(
+                modifier = Modifier.fillMaxSize(),
+                text = state.errorMessage.orEmpty()
+            )
+        }
     }
 }

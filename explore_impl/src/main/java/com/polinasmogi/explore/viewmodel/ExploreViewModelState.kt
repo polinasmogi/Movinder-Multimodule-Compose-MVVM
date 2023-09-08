@@ -1,13 +1,13 @@
 package com.polinasmogi.explore.viewmodel
 
-import com.polinasmogi.moviesapi.model.Doc
+import com.polinasmogi.moviesapi.model.MovieModel
 
 data class ExploreViewModelState(
     val loading: Boolean = false,
     val movieIndex: Int? = null,
-    val movie: Doc? = null,
-    val selectedMovie: Doc? = null,
-    val errorMessage: String = ""
+    val movie: MovieModel? = null,
+    val selectedMovie: MovieModel? = null,
+    val errorMessage: String? = ""
 ) {
 
     fun toUiState(): ExploreUiState =

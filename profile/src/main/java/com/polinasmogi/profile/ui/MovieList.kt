@@ -7,13 +7,14 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import com.polinasmogi.moviesapi.model.MovieModel
 
 @Composable
-fun MovieList(movies: List<String?>) {
+fun MovieList(movies: List<MovieModel>) {
     Box(modifier = Modifier.fillMaxSize()) {
         LazyColumn {
             items(movies) {
-                it?.let { it1 -> Text(text = it1) }
+                SavedMovieItem(it)
             }
         }
     }

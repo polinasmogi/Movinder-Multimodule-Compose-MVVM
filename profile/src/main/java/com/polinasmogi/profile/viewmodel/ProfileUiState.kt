@@ -1,5 +1,7 @@
 package com.polinasmogi.profile.viewmodel
 
+import com.polinasmogi.moviesapi.model.MovieModel
+
 sealed interface ProfileUiState {
 
     object Loading : ProfileUiState
@@ -9,7 +11,7 @@ sealed interface ProfileUiState {
     ) : ProfileUiState
 
     data class MovieList(
-        val movies: List<String?>
+        val movies: List<MovieModel>
     ) : ProfileUiState
 
     data class Error(

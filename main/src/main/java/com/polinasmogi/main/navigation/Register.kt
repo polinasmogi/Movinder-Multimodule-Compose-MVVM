@@ -6,13 +6,15 @@ import androidx.navigation.NavHostController
 import com.polinasmogi.core_api.mediator.FeatureEntry
 
 fun NavGraphBuilder.register(
-    featureMediator: com.polinasmogi.core_api.mediator.FeatureEntry,
+    featureMediator: FeatureEntry,
     navController: NavHostController,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    navigateTo: (Int) -> Unit
 ) {
     featureMediator.registerGraph(
         navGraphBuilder = this,
         navController = navController,
-        modifier = modifier
+        modifier = modifier,
+        navigateTo = navigateTo
     )
 }
