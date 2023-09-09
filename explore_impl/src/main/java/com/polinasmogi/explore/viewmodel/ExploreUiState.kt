@@ -1,6 +1,6 @@
 package com.polinasmogi.explore.viewmodel
 
-import com.polinasmogi.moviesapi.model.MovieModel
+import com.polinasmogi.explore.models.MovieToExploreModel
 
 sealed interface ExploreUiState {
 
@@ -11,12 +11,8 @@ sealed interface ExploreUiState {
     ) : ExploreUiState
 
     data class MovieCard(
-        val movie: MovieModel,
+        val movie: MovieToExploreModel,
         val movieIndex: Int
-    ) : ExploreUiState
-
-    data class MovieInfo(
-        val movie: MovieModel
     ) : ExploreUiState
 
     data class Error(

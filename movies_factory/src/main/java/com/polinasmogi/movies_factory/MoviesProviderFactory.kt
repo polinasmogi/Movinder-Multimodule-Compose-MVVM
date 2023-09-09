@@ -6,7 +6,7 @@ import com.polinasmogi.moviesapi.MoviesProvider
 
 object MoviesProviderFactory {
 
-    fun createMoviesProvider(appProvider: com.polinasmogi.core_api.mediator.AppProvider): MoviesProvider {
+    fun createMoviesProvider(appProvider: AppProvider): MoviesProvider {
         return MoviesComponent.init(appProvider)
     }
 }

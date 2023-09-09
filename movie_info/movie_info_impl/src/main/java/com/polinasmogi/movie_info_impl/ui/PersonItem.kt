@@ -17,12 +17,10 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
-import com.polinasmogi.moviesapi.SampleData
-import com.polinasmogi.moviesapi.model.info.Person
 import com.polinasmogi.ui_atoms.theme.MovinderTheme
 
 @Composable
-fun PersonItem(person: Person) {
+fun PersonItem(person: com.polinasmogi.movie_info_impl.network.info.Person) {
     Column(
         modifier = Modifier
             .height(90.dp)
@@ -62,6 +60,6 @@ fun PersonItem(person: Person) {
 @Composable
 fun MovieItemPreview() {
     MovinderTheme {
-        PersonItem(SampleData.movieDetails.persons.first())
+//        PersonItem(SampleData.movieDetails.persons.first())
     }
 }

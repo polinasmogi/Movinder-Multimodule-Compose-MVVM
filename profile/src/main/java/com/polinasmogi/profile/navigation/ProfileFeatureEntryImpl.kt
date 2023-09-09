@@ -28,7 +28,7 @@ class ProfileFeatureEntryImpl @Inject constructor(
         navGraphBuilder.composable(baseRoute) {
             val viewModel = ProfileComponent.init(appProvider).viewModelFactory
                 .create(ProfileViewModel::class.java)
-            ProfileScreen(viewModel = viewModel)
+            ProfileScreen(viewModel = viewModel, navigateTo)
         }
     }
 }

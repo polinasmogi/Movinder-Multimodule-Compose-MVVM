@@ -4,7 +4,6 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
@@ -12,7 +11,7 @@ import com.polinasmogi.core_api.mediator.AppProvider
 import com.polinasmogi.explore.di.ExploreComponent
 import com.polinasmogi.explore.ui.ExploreScreen
 import com.polinasmogi.explore.viewmodel.ExploreViewModel
-import com.polinasmogi.explore_api.ExploreFeatureEntry
+import com.polinasmogi.explore_api.navigation.ExploreFeatureEntry
 import javax.inject.Inject
 
 class ExploreFeatureEntryImpl @Inject constructor(

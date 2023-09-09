@@ -3,8 +3,7 @@ package com.polinasmogi.explore.viewmodel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.polinasmogi.explore.interactor.ExploreInteractor
-import com.polinasmogi.moviesapi.SampleData
-import com.polinasmogi.moviesapi.model.MovieModel
+import com.polinasmogi.explore.models.MovieToExploreModel
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.CoroutineScope
@@ -15,7 +14,6 @@ import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import java.lang.IndexOutOfBoundsException
 import javax.inject.Inject
 
 class ExploreViewModel
@@ -44,26 +42,18 @@ class ExploreViewModel
             viewModelState.value.toUiState()
         )
 
-    private val movies = mutableListOf<MovieModel>()
+    private val movies = mutableListOf<MovieToExploreModel>()
 
     init {
         getMovies()
     }
 
-    private fun getMovies() {
-        scope.launch() {
-//            this@ExploreViewModel.movies.addAll(listOf(SampleData.movieAModel, SampleData.movieAModel, SampleData.movieAModel))
-//            viewModelState.update {
-//                it.copy(
-//                    loading = false,
-//                    movie = movies.first(),
-//                    movieIndex = 0
-//                )
-//            }
-            val movies = withContext(ioDispatcher) {
-                interactor.getMovies()
+    private fun getMovies(page: Int? = null) {
+        scope.launch {
+            val moviesToExplore = withContext(ioDispatcher) {
+                interactor.getMoviesToExplore(page)
             }
-            this@ExploreViewModel.movies.addAll(movies)
+            this@ExploreViewModel.movies.addAll(moviesToExplore)
             viewModelState.update {
                 it.copy(
                     loading = false,
@@ -74,48 +64,31 @@ class ExploreViewModel
         }
     }
 
-    fun onYesClicked(movie: MovieModel, movieIndex: Int) {
+    fun onYesClicked(movie: MovieToExploreModel, movieIndex: Int) {
         viewModelScope.launch(ioDispatcher) {
             interactor.onMovieLiked(movie)
-            viewModelState.update {
-                it.copy(
-                    movie = movies[movieIndex + 1],
-                    movieIndex = movieIndex + 1,
-                    selectedMovie = null
-                )
-            }
+            showNextMovie(movieIndex, movie.page)
         }
     }
 
-    fun onNoClicked(movieIndex: Int) {
+    fun onNoClicked(movieId: Int, movieIndex: Int, page: Int) {
+        viewModelScope.launch(ioDispatcher) {
+            interactor.onMovieDisliked(movieId)
+            showNextMovie(movieIndex, page)
+        }
+    }
+
+    private fun showNextMovie(movieIndex: Int, page: Int) {
         try {
             viewModelState.update {
                 it.copy(
                     movie = movies[movieIndex + 1],
-                    movieIndex = movieIndex + 1,
-                    selectedMovie = null
+                    movieIndex = movieIndex + 1
                 )
             }
+            movies.removeAt(movieIndex)
         } catch (e: IndexOutOfBoundsException) {
-            viewModelScope.launch(ioDispatcher) {
-                getMovies()
-            }
-        }
-    }
-
-    fun onMovieClick(movie: MovieModel) {
-        viewModelState.update {
-            it.copy(
-                selectedMovie = movie
-            )
-        }
-    }
-
-    fun onBackPressed() {
-        viewModelState.update {
-            it.copy(
-                selectedMovie = null
-            )
+            getMovies(page)
         }
     }
 }

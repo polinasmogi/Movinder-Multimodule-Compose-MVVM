@@ -22,8 +22,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
-import com.polinasmogi.moviesapi.SampleData
-import com.polinasmogi.moviesapi.model.info.MovieInfoResponse
+import com.polinasmogi.movie_info_impl.network.info.MovieInfoResponse
 import com.polinasmogi.ui_atoms.theme.MovinderTheme
 
 @Composable
@@ -102,6 +101,6 @@ fun MovieDetails(movieInfo: MovieInfoResponse) {
 @Composable
 fun MovieDetailsPreview() {
     MovinderTheme {
-        MovieDetails(SampleData.movieDetails)
+//        MovieDetails(SampleData.movieDetails)
     }
 }

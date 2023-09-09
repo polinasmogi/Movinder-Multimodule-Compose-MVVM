@@ -8,7 +8,8 @@ import com.polinasmogi.profile.viewmodel.ProfileViewModel
 
 @Composable
 fun ProfileScreen(
-    viewModel: ProfileViewModel
+    viewModel: ProfileViewModel,
+    onMovieClick: (Int) -> Unit
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 
@@ -17,7 +18,10 @@ fun ProfileScreen(
 //            Loading()
         }
         is ProfileUiState.MovieList -> {
-            MovieList((uiState as ProfileUiState.MovieList).movies)
+            MovieList(
+                (uiState as ProfileUiState.MovieList).movies,
+                onMovieClick
+            )
         }
         is ProfileUiState.Error -> {}
         is ProfileUiState.NoMovies -> {}

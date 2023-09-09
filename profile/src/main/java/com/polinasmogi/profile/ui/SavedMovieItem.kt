@@ -16,13 +16,17 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.polinasmogi.moviesapi.SampleData
-import com.polinasmogi.moviesapi.model.MovieModel
+import com.polinasmogi.moviesapi.model.LikedMovieModel
 import com.polinasmogi.ui_atoms.theme.MovinderTheme
 
 @Composable
-fun SavedMovieItem(movie: MovieModel) {
+fun SavedMovieItem(
+    movie: LikedMovieModel,
+    onMovieClick: (Int) -> Unit
+) {
     Column(
-        modifier = Modifier.clickable {  }
+        modifier = Modifier
+            .clickable { onMovieClick.invoke(movie.id) }
             .padding(vertical = 8.dp, horizontal = 16.dp)
             .fillMaxWidth()
     ) {
@@ -55,6 +59,6 @@ fun SavedMovieItem(movie: MovieModel) {
 @Composable
 fun MoviesExplorerPreview() {
     MovinderTheme {
-        SavedMovieItem(SampleData.movieAModel)
+        SavedMovieItem(SampleData.movieAModel, {})
     }
 }

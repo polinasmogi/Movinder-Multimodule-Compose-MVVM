@@ -2,12 +2,10 @@ package com.polinasmogi.explore.ui
 
 import androidx.compose.foundation.ScrollState
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -18,12 +16,10 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
-import com.polinasmogi.moviesapi.model.MovieModel
-import com.polinasmogi.moviesapi.network.model.model.Doc
-import java.lang.StringBuilder
+import com.polinasmogi.explore.models.MovieToExploreModel
 
 @Composable
-fun MovieItem(movie: MovieModel) {
+fun MovieItem(movie: MovieToExploreModel) {
     AsyncImage(
         model = movie.posterUrl,
         contentDescription = "${movie.name} logo",

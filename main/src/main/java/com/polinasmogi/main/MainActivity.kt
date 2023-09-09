@@ -6,7 +6,7 @@ import androidx.activity.compose.setContent
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import com.polinasmogi.core_api.mediator.AppWithFacade
-import com.polinasmogi.explore_api.ExploreFeatureEntry
+import com.polinasmogi.explore_api.navigation.ExploreFeatureEntry
 import com.polinasmogi.main.di.MainComponent
 import com.polinasmogi.movie_info_api.MovieInfoFeatureEntry
 import com.polinasmogi.partner_api.PartnerFeatureEntry

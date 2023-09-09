@@ -3,8 +3,7 @@ package com.polinasmogi.movie_info_impl.viewmodel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.polinasmogi.movie_info_impl.interactor.MovieInfoInteractor
-import com.polinasmogi.moviesapi.SampleData
-import com.polinasmogi.moviesapi.model.MovieModel
+import com.polinasmogi.moviesapi.model.LikedMovieModel
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -14,7 +13,6 @@ import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import java.lang.IndexOutOfBoundsException
 import javax.inject.Inject
 
 class MovieInfoViewModel
@@ -34,12 +32,6 @@ class MovieInfoViewModel
         )
 
     fun getMovieById(movieId: Int?) {
-//        viewModelState.update {
-//            it.copy(
-//                loading = false,
-//                movie = SampleData.movieDetails
-//            )
-//        }
         movieId?.let { id ->
             viewModelScope.launch(ioDispatcher) {
                 val movie = withContext(ioDispatcher) {
@@ -55,9 +47,9 @@ class MovieInfoViewModel
         }
     }
 
-    fun onYesClicked(movie: MovieModel, movieIndex: Int) {
+    fun onYesClicked(movie: LikedMovieModel, movieIndex: Int) {
         viewModelScope.launch(ioDispatcher) {
-            interactor.onMovieLiked(movie)
+//            interactor.onMovieLiked(movie)
             viewModelState.update {
                 it.copy(
 //                    movie = movies[movieIndex + 1],

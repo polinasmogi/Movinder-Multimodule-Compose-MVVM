@@ -1,10 +1,10 @@
 package com.polinasmogi.profile.viewmodel
 
-import com.polinasmogi.moviesapi.model.MovieModel
+import com.polinasmogi.moviesapi.model.LikedMovieModel
 
 data class ProfileViewModelState(
     val loading: Boolean = false,
-    val movies: List<MovieModel>? = null,
+    val movies: List<LikedMovieModel>? = null,
     val errorMessage: String = ""
 ) {
 

@@ -43,8 +43,11 @@ dependencies {
     implementation project(path: ':ui_atoms')
     implementation project(path: ':explore_api')
     implementation project(path: ':core:core_api')
+    implementation project(path: ':core:core_factory')
     implementation project(path: ':movies_api')
     implementation project(path: ':movies_factory')
+    implementation project(path: ':database:database_factory')
+    implementation project(path: ':database:database_api')
 
     implementation 'androidx.core:core-ktx:1.10.1'
     implementation 'androidx.appcompat:appcompat:1.6.1'
@@ -66,4 +69,8 @@ dependencies {
 
     // Images
     implementation "io.coil-kt:coil-compose:$coil_version"
+
+    // API
+    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
 }

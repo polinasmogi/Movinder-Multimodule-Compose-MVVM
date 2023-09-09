@@ -1,6 +1,6 @@
 package com.polinasmogi.main.di
 
-import com.polinasmogi.explore_api.ExploreFeatureEntry
+import com.polinasmogi.explore_api.navigation.ExploreFeatureEntry
 import com.polinasmogi.movie_info_api.MovieInfoFeatureEntry
 import com.polinasmogi.partner_api.PartnerFeatureEntry
 import com.polinasmogi.profile_api.ProfileFeatureEntry

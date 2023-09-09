@@ -1,10 +1,8 @@
 package com.polinasmogi.movie_info_impl.viewmodel
 
-import com.polinasmogi.moviesapi.model.info.MovieInfoResponse
-
 data class MovieInfoViewModelState(
     val loading: Boolean = false,
-    val movie: MovieInfoResponse? = null,
+    val movie: com.polinasmogi.movie_info_impl.network.info.MovieInfoResponse? = null,
     val errorMessage: String = ""
 ) {
 

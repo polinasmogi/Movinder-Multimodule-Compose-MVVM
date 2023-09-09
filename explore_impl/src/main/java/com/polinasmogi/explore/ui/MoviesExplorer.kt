@@ -19,14 +19,12 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.polinasmogi.moviesapi.SampleData
-import com.polinasmogi.moviesapi.model.MovieModel
-import com.polinasmogi.moviesapi.network.model.model.Doc
+import com.polinasmogi.explore.models.MovieToExploreModel
 import com.polinasmogi.ui_atoms.theme.MovinderTheme
 
 @Composable
 fun MoviesExplorer(
-    movie: MovieModel,
+    movie: MovieToExploreModel,
     onYesClick: () -> Unit,
     onNoCLick: () -> Unit,
     onMovieClick: () -> Unit
@@ -82,6 +80,6 @@ fun MoviesExplorer(
 @Composable
 fun MoviesExplorerPreview() {
     MovinderTheme {
-        MoviesExplorer(SampleData.movieAModel, {}, {}, {})
+//        MoviesExplorer(SampleData.movieAModel, {}, {}, {})
     }
 }

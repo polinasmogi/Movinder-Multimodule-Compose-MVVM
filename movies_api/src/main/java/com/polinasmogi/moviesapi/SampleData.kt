@@ -1,34 +1,28 @@
 package com.polinasmogi.moviesapi
 
-import com.google.gson.Gson
-import com.polinasmogi.moviesapi.model.MovieModel
-import com.polinasmogi.moviesapi.model.info.MovieInfoResponse
-import com.polinasmogi.moviesapi.network.model.model.Countries
-import com.polinasmogi.moviesapi.network.model.model.Doc
-import com.polinasmogi.moviesapi.network.model.model.Genres
-import com.polinasmogi.moviesapi.network.model.model.Poster
+import com.polinasmogi.moviesapi.model.LikedMovieModel
 
 object SampleData {
 
-    val movieA = Doc(
-        id = 1,
-        name = "1+1",
-        poster = Poster(
-            url = "https://st.kp.yandex.net/images/film_big/535341.jpg",
-            previewUrl = "https://st.kp.yandex.net/images/film_iphone/iphone360_535341.jpg"
-        ),
-        genres = listOf(
-            Genres(name = "драма"),
-            Genres(name = "комедия"),
-            Genres(name = "биография")
-        ),
-        countries = listOf(
-            Countries(name = "Франция")
-        ),
-        shortDescription = "Аристократ на коляске нанимает в сиделки бывшего заключенного. Искрометная французская комедия с Омаром Си"
-    )
+//    val movieA = Doc(
+//        id = 1,
+//        name = "1+1",
+//        poster = com.polinasmogi.explore_api.network.model.Poster(
+//            url = "https://st.kp.yandex.net/images/film_big/535341.jpg",
+//            previewUrl = "https://st.kp.yandex.net/images/film_iphone/iphone360_535341.jpg"
+//        ),
+//        genres = listOf(
+//            com.polinasmogi.explore_api.network.model.Genres(name = "драма"),
+//            com.polinasmogi.explore_api.network.model.Genres(name = "комедия"),
+//            com.polinasmogi.explore_api.network.model.Genres(name = "биография")
+//        ),
+//        countries = listOf(
+//            com.polinasmogi.explore_api.network.model.Countries(name = "Франция")
+//        ),
+//        shortDescription = "Аристократ на коляске нанимает в сиделки бывшего заключенного. Искрометная французская комедия с Омаром Си"
+//    )
 
-    val movieAModel = MovieModel (
+    val movieAModel = LikedMovieModel (
         id = 1,
         name = "1+1",
         posterUrl = "https://st.kp.yandex.net/images/film_big/535341.jpg",
@@ -487,5 +481,5 @@ object SampleData {
             "  \"totalSeriesLength\": null\n" +
             "}"
 
-    val movieDetails = Gson().fromJson(movieResponse, MovieInfoResponse::class.java )
+//    val movieDetails = Gson().fromJson(movieResponse, MovieInfoResponse::class.java )
 }

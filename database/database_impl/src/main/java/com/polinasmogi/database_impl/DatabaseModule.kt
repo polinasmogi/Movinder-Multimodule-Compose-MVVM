@@ -2,7 +2,8 @@ package com.polinasmogi.database_impl
 
 import android.content.Context
 import androidx.room.Room
-import com.polinasmogi.database_api.database.MoviesDao
+import com.polinasmogi.database_api.database.ExploreMoviesDao
+import com.polinasmogi.database_api.database.LikedMoviesDao
 import com.polinasmogi.database_api.database.MoviesDatabaseContract
 import dagger.Module
 import dagger.Provides
@@ -16,8 +17,14 @@ class DatabaseModule {
 
     @Provides
     @Reusable
-    fun provideDao(databaseContract: MoviesDatabaseContract): MoviesDao {
-        return databaseContract.moviesDao()
+    fun provideExploreMoviesDao(databaseContract: MoviesDatabaseContract): ExploreMoviesDao {
+        return databaseContract.exploreMoviesDao()
+    }
+
+    @Provides
+    @Reusable
+    fun provideLikedMoviesDao(databaseContract: MoviesDatabaseContract): LikedMoviesDao {
+        return databaseContract.likedMoviesDao()
     }
 
     @Provides

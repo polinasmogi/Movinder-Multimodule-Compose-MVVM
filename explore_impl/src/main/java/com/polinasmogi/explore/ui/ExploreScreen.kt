@@ -1,10 +1,8 @@
 package com.polinasmogi.explore.ui
 
-import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -23,23 +21,13 @@ fun ExploreScreen(
         ExploreUiState.Loading -> {
 //            Loading()
         }
-        is ExploreUiState.MovieInfo -> {
-            val state = uiState as ExploreUiState.MovieInfo
-//            mediator.ShowMovieInfo(movie = state.movie)
-            BackHandler {
-                viewModel.onBackPressed()
-            }
-        }
         is ExploreUiState.MovieCard -> {
             val state = uiState as ExploreUiState.MovieCard
             MoviesExplorer(
                 movie = state.movie,
                 onYesClick = { viewModel.onYesClicked(state.movie, state.movieIndex) },
-                onNoCLick = { viewModel.onNoClicked(state.movieIndex) },
-                onMovieClick = {
-                    onMovieClick.invoke(state.movie.id)
-//                    viewModel.onMovieClick(state.movie)
-                }
+                onNoCLick = { viewModel.onNoClicked(state.movie.id, state.movieIndex, state.movie.page) },
+                onMovieClick = { onMovieClick.invoke(state.movie.id) }
             )
         }
         is ExploreUiState.NoMovies -> {
