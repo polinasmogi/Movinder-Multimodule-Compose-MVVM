@@ -1,9 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <color name="color_primary">@color/rose_red</color>
+    <color name="color_primary">#FFAB274F</color>
+    <color name="color_secondary">#FF3E4095</color>
+    <color name="color_tertiary">#FF00A896</color>
+    <color name="color_error">#FFFF5252</color>
+    <color name="color_background">#FFFFFFFF</color>
+    <color name="color_surface">#FFF0F0F0</color>
+    <color name="color_on_background">#FF000000</color>
+
 
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="rose_red">#FFAB274F</color>
+
 </resources>

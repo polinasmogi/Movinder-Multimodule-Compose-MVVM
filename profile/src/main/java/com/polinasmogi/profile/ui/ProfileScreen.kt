@@ -5,6 +5,7 @@ import androidx.compose.runtime.getValue
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.polinasmogi.profile.viewmodel.ProfileUiState
 import com.polinasmogi.profile.viewmodel.ProfileViewModel
+import com.polinasmogi.uikit.loader.LoaderComposable
 
 @Composable
 fun ProfileScreen(
@@ -15,7 +16,7 @@ fun ProfileScreen(
 
     when (uiState) {
         ProfileUiState.Loading -> {
-//            Loading()
+            LoaderComposable()
         }
         is ProfileUiState.MovieList -> {
             MovieList(

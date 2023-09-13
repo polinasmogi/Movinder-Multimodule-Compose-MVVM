@@ -6,6 +6,7 @@ import androidx.compose.runtime.getValue
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.polinasmogi.movie_info_impl.viewmodel.MovieInfoUiState
 import com.polinasmogi.movie_info_impl.viewmodel.MovieInfoViewModel
+import com.polinasmogi.uikit.loader.LoaderComposable
 
 @Composable
 fun MovieInfoScreen(
@@ -21,7 +22,9 @@ fun MovieInfoScreen(
 
     when (uiState) {
         is MovieInfoUiState.Error -> {}
-        MovieInfoUiState.Loading -> {}
+        MovieInfoUiState.Loading -> {
+            LoaderComposable()
+        }
         is MovieInfoUiState.MovieInfo -> {
             MovieDetails((uiState as MovieInfoUiState.MovieInfo).movie)
         }

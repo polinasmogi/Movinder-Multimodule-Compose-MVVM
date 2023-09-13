@@ -8,6 +8,7 @@ import androidx.compose.ui.Modifier
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.polinasmogi.explore.viewmodel.ExploreUiState
 import com.polinasmogi.explore.viewmodel.ExploreViewModel
+import com.polinasmogi.uikit.loader.LoaderComposable
 
 @Composable
 fun ExploreScreen(
@@ -19,7 +20,7 @@ fun ExploreScreen(
 
     when (uiState) {
         ExploreUiState.Loading -> {
-//            Loading()
+            LoaderComposable()
         }
         is ExploreUiState.MovieCard -> {
             val state = uiState as ExploreUiState.MovieCard
