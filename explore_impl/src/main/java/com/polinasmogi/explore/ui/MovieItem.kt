@@ -31,13 +31,15 @@ fun MovieItem(movie: MovieToExploreModel) {
             .fillMaxSize()
             .verticalScroll(ScrollState(0))
             .padding(top = 430.dp, bottom = 80.dp)
-            .background(brush = Brush.verticalGradient(
-                colors = listOf(
-                    Color.Transparent,
-                    MaterialTheme.colorScheme.background
-                ),
-                endY = 400F
-            ))
+            .background(
+                brush = Brush.verticalGradient(
+                    colors = listOf(
+                        Color.Transparent,
+                        MaterialTheme.colorScheme.background
+                    ),
+                    endY = 400F
+                )
+            )
     ) {
         movie.apply {
             Text(
@@ -50,7 +52,8 @@ fun MovieItem(movie: MovieToExploreModel) {
             shortDescription?.let {
                 Text(
                     text = it,
-                    modifier = Modifier.padding(top = 16.dp)
+                    modifier = Modifier
+                        .padding(top = 16.dp)
                         .padding(horizontal = 16.dp)
                 )
             }

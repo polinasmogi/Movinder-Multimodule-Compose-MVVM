@@ -11,7 +11,7 @@ fun LoaderComposable() {
     AndroidView(
         modifier = Modifier.fillMaxSize(),
         factory = { context ->
-            MovieLoader(context, null)
+            FullScreenLoader(context, null)
         }
     )
 }

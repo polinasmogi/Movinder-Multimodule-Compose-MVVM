@@ -20,31 +20,40 @@ fun BottomNavigationBar(modifier: Modifier, navController: NavController) {
         BottomNavigationItem.Partner,
         BottomNavigationItem.Profile
     )
-    NavigationBar (
-        modifier
-            .graphicsLayer {
-                shape = RoundedCornerShape(
-                    topStart = 20.dp,
-                    topEnd = 20.dp
-                )
-                clip = true
-            },
-        containerColor = MaterialTheme.colorScheme.surface
-    ) {
-        val navBackStackEntry by navController.currentBackStackEntryAsState()
-        val currentRoute = navBackStackEntry?.destination?.route
-        bottomNavigationItems.forEach { item ->
-            val selected = item.route == currentRoute
-            NavigationBarItem(
-                selected = selected,
-                onClick = { navController.navigate(item.route) },
-                icon = {
-                    Icon(
-                        imageVector = item.icon,
-                        contentDescription = "${item.nameRes} Icon",
+
+    val screensWithBottomBar = listOf(
+        BottomNavigationItem.Explore.route,
+        BottomNavigationItem.Partner.route,
+        BottomNavigationItem.Profile.route
+    )
+    val navBackStackEntry by navController.currentBackStackEntryAsState()
+    val currentRoute = navBackStackEntry?.destination?.route
+
+    if (currentRoute in screensWithBottomBar) {
+        NavigationBar (
+            modifier
+                .graphicsLayer {
+                    shape = RoundedCornerShape(
+                        topStart = 20.dp,
+                        topEnd = 20.dp
                     )
-                }
-            )
+                    clip = true
+                },
+            containerColor = MaterialTheme.colorScheme.surface
+        ) {
+            bottomNavigationItems.forEach { item ->
+                val selected = item.route == currentRoute
+                NavigationBarItem(
+                    selected = selected,
+                    onClick = { navController.navigate(item.route) },
+                    icon = {
+                        Icon(
+                            imageVector = item.icon,
+                            contentDescription = "${item.nameRes} Icon",
+                        )
+                    }
+                )
+            }
         }
     }
 }

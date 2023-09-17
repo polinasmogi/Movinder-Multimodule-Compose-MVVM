@@ -20,7 +20,7 @@ import kotlin.math.sin
 
 
 @Suppress("DEPRECATION")
-class MovieLoader @JvmOverloads constructor(
+class FullScreenLoader @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet?
 ) : View(context, attrs) {
