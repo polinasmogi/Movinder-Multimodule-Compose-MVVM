@@ -4,6 +4,7 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
+import com.polinasmogi.core_api.composeViewModel
 import com.polinasmogi.core_api.mediator.AppProvider
 import com.polinasmogi.profile.di.ProfileComponent
 import com.polinasmogi.profile.ui.ProfileScreen
@@ -26,8 +27,10 @@ class ProfileFeatureEntryImpl @Inject constructor(
         navigateTo: (Int) -> Unit
     ) {
         navGraphBuilder.composable(baseRoute) {
-            val viewModel = ProfileComponent.init(appProvider).viewModelFactory
-                .create(ProfileViewModel::class.java)
+            val viewModel = composeViewModel {
+                ProfileComponent.init(appProvider).viewModelFactory
+                    .create(ProfileViewModel::class.java)
+            }
             ProfileScreen(viewModel = viewModel, navigateTo)
         }
     }
