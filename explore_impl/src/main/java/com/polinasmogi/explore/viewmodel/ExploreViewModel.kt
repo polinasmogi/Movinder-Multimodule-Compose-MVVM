@@ -1,7 +1,6 @@
 package com.polinasmogi.explore.viewmodel
 
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
 import com.polinasmogi.explore.interactor.ExploreInteractor
 import com.polinasmogi.explore.models.MovieToExploreModel
 import kotlinx.coroutines.CoroutineDispatcher
@@ -37,7 +36,7 @@ class ExploreViewModel
     val uiState = viewModelState
         .map(ExploreViewModelState::toUiState)
         .stateIn(
-            viewModelScope,
+            scope,
             SharingStarted.Eagerly,
             viewModelState.value.toUiState()
         )
@@ -65,14 +64,14 @@ class ExploreViewModel
     }
 
     fun onYesClicked(movie: MovieToExploreModel, movieIndex: Int) {
-        viewModelScope.launch(ioDispatcher) {
+        scope.launch {
             interactor.onMovieLiked(movie)
             showNextMovie(movieIndex, movie.page)
         }
     }
 
     fun onNoClicked(movieId: Int, movieIndex: Int, page: Int) {
-        viewModelScope.launch(ioDispatcher) {
+        scope.launch() {
             interactor.onMovieDisliked(movieId)
             showNextMovie(movieIndex, page)
         }
