@@ -13,7 +13,7 @@ class ExploreInteractorImpl
     ): ExploreInteractor {
 
     override suspend fun getMoviesToExplore(page: Int?): List<MovieToExploreModel> {
-        return exploreRepository.getMoviesToExplore()
+        return exploreRepository.getMoviesToExplore(page)
     }
 
     override suspend fun onMovieLiked(movie: MovieToExploreModel) {

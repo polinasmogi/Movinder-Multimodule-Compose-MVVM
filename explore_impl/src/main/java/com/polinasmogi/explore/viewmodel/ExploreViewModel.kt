@@ -6,13 +6,13 @@ import com.polinasmogi.explore.models.MovieToExploreModel
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.async
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 class ExploreViewModel
@@ -42,6 +42,7 @@ class ExploreViewModel
         )
 
     private val movies = mutableListOf<MovieToExploreModel>()
+    fun getMoviesForTest() : List<MovieToExploreModel> = movies
 
     init {
         getMovies()
@@ -49,10 +50,8 @@ class ExploreViewModel
 
     private fun getMovies(page: Int? = null) {
         scope.launch {
-            val moviesToExplore = withContext(ioDispatcher) {
-                interactor.getMoviesToExplore(page)
-            }
-            this@ExploreViewModel.movies.addAll(moviesToExplore)
+            val moviesToExplore = async { interactor.getMoviesToExplore(page) }
+            this@ExploreViewModel.movies.addAll(moviesToExplore.await())
             viewModelState.update {
                 it.copy(
                     loading = false,
@@ -71,7 +70,7 @@ class ExploreViewModel
     }
 
     fun onNoClicked(movieId: Int, movieIndex: Int, page: Int) {
-        scope.launch() {
+        scope.launch {
             interactor.onMovieDisliked(movieId)
             showNextMovie(movieIndex, page)
         }

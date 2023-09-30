@@ -28,7 +28,7 @@ fun ExploreScreen(
                 movie = state.movie,
                 onYesClick = { viewModel.onYesClicked(state.movie, state.movieIndex) },
                 onNoCLick = { viewModel.onNoClicked(state.movie.id, state.movieIndex, state.movie.page) },
-                onMovieClick = { onMovieClick.invoke(state.movie.id) }
+                showMoreAction = { onMovieClick.invoke(state.movie.id) }
             )
         }
         is ExploreUiState.NoMovies -> {

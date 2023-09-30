@@ -1,95 +1,123 @@
 package com.polinasmogi.explore.viewmodel
 
+import com.polinasmogi.explore.DataFactory.movie1
+import com.polinasmogi.explore.DataFactory.movie2
+import com.polinasmogi.explore.DataFactory.movieList
+import com.polinasmogi.explore.MainDispatcherRule
 import com.polinasmogi.explore.interactor.ExploreInteractor
-import com.polinasmogi.explore.models.MovieToExploreModel
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.test.TestDispatcher
-import kotlinx.coroutines.test.UnconfinedTestDispatcher
-import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.runTest
-import kotlinx.coroutines.test.setMain
+import org.junit.After
 import org.junit.Assert.assertEquals
-import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
-import org.junit.rules.TestWatcher
-import org.junit.runner.Description
-import org.junit.runner.RunWith
-import org.mockito.Mock
 import org.mockito.Mockito.mock
 import org.mockito.Mockito.verify
-import org.mockito.Mockito.`when`
-import org.mockito.junit.MockitoJUnitRunner
+import org.mockito.Mockito.verifyNoMoreInteractions
+import org.mockito.kotlin.whenever
 
-@RunWith(MockitoJUnitRunner::class)
-class ExploreViewModelTest() {
+class ExploreViewModelTest {
 
     @get:Rule
     val mainDispatcherRule = MainDispatcherRule()
 
-    @Mock
-    private lateinit var interactor: ExploreInteractor
+    private val interactor: ExploreInteractor = mock()
 
     private lateinit var viewModel: ExploreViewModel
 
-    @Before
-    fun setUp() {
-//        MockitoAnnotations.initMocks(this)
-        interactor = mock(ExploreInteractor::class.java)
+    @After
+    fun after() {
+        verifyNoMoreInteractions(interactor)
     }
 
     @Test
     fun `show first movie after the viewModel was created`() = runTest {
-        val givenResult = listOf(
-            MovieToExploreModel(1, "","","","",1),
-            MovieToExploreModel(1, "","","","",1)
-        )
-        `when`(interactor.getMoviesToExplore(null)).thenReturn(givenResult)
+        // given
+        whenever(interactor.getMoviesToExplore(null)).thenReturn(movieList)
 
+        // when
         viewModel = ExploreViewModel(interactor, mainDispatcherRule.testDispatcher)
 
-
+        // then
         verify(interactor).getMoviesToExplore(null)
-
+        assertEquals(movieList, viewModel.getMoviesForTest())
         assertEquals(
-            ExploreUiState.Loading,
+            ExploreUiState.MovieCard(movie1, 0),
+            viewModel.uiState.value
+        )
+    }
+
+    @Test(expected = Throwable::class)
+    fun `show an error, if a call failed with an exception`() = runTest {
+        // given
+        val errorMessage = "Error message"
+        whenever(interactor.getMoviesToExplore(null)).thenThrow(Throwable(errorMessage))
+
+        // when
+        viewModel = ExploreViewModel(interactor, mainDispatcherRule.testDispatcher)
+
+        // then
+        verify(interactor).getMoviesToExplore(null)
+        assertEquals(
+            ExploreUiState.Error(errorMessage = errorMessage),
             viewModel.uiState.value
         )
     }
 
     @Test
-    fun `show next movie if the yes button was clicked`() = runTest {
-        // when
-        val movie = MovieToExploreModel(1, "","","","",1)
-
+    fun `show next movie, if yes button was clicked`() = runTest {
+        // given
+        whenever(interactor.getMoviesToExplore(null)).thenReturn(movieList)
         viewModel = ExploreViewModel(interactor, mainDispatcherRule.testDispatcher)
 
+        // when
+        viewModel.onYesClicked(movie1, 0)
 
-        viewModel.onYesClicked(movie, 0)
-
-
+        // then
         verify(interactor).getMoviesToExplore(null)
-
+        verify(interactor).onMovieLiked(movie1)
+        assertEquals(listOf(movie2), viewModel.getMoviesForTest())
         assertEquals(
-            ExploreUiState.MovieCard(movie, 1),
+            ExploreUiState.MovieCard(movie2, 1),
             viewModel.uiState.value
         )
     }
-}
 
+    @Test
+    fun `show next movie, if no button was clicked`() = runTest {
+        // given
+        whenever(interactor.getMoviesToExplore(null)).thenReturn(movieList)
+        viewModel = ExploreViewModel(interactor, mainDispatcherRule.testDispatcher)
 
-class MainDispatcherRule @OptIn(ExperimentalCoroutinesApi::class) constructor(
-    val testDispatcher: TestDispatcher = UnconfinedTestDispatcher(),
-) : TestWatcher() {
+        // when
+        viewModel.onNoClicked(movie1.id, 0, movie1.page)
 
-    @OptIn(ExperimentalCoroutinesApi::class)
-    override fun starting(description: Description) {
-        Dispatchers.setMain(testDispatcher)
+        // then
+        verify(interactor).getMoviesToExplore(null)
+        verify(interactor).onMovieDisliked(movie1.id)
+        assertEquals(listOf(movie2), viewModel.getMoviesForTest())
+        assertEquals(
+            ExploreUiState.MovieCard(movie2, 1),
+            viewModel.uiState.value
+        )
     }
 
-    @OptIn(ExperimentalCoroutinesApi::class)
-    override fun finished(description: Description) {
-        Dispatchers.resetMain()
+    @Test
+    fun `get new movies, when no button was clicked and all movies were explored`() = runTest {
+        // given
+        val veryShortList = listOf(movie1)
+        whenever(interactor.getMoviesToExplore(null)).thenReturn(veryShortList)
+        viewModel = ExploreViewModel(interactor, mainDispatcherRule.testDispatcher)
+
+        // when
+        viewModel.onNoClicked(movie1.id, 0, movie1.page)
+
+        // then
+        verify(interactor).getMoviesToExplore(null)
+        verify(interactor).onMovieDisliked(movie1.id)
+        verify(interactor).getMoviesToExplore(movie1.page)
+        assertEquals(
+            ExploreUiState.MovieCard(movie1, 0),
+            viewModel.uiState.value
+        )
     }
 }

@@ -1,7 +1,6 @@
 package com.polinasmogi.explore.ui
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -27,17 +26,14 @@ fun MoviesExplorer(
     movie: MovieToExploreModel,
     onYesClick: () -> Unit,
     onNoCLick: () -> Unit,
-    onMovieClick: () -> Unit
+    showMoreAction: () -> Unit
 ) {
     Box(
         modifier = Modifier
             .fillMaxSize()
             .padding(bottom = 56.dp)
-            .clickable {
-                onMovieClick.invoke()
-            }
     ) {
-        MovieItem(movie = movie)
+        MovieItem(movie = movie, showMoreAction = showMoreAction)
         Box(
             Modifier
                 .fillMaxWidth()

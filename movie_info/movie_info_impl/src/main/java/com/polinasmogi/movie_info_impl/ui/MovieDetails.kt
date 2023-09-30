@@ -50,16 +50,28 @@ fun MovieDetails(movieInfo: MovieInfoResponse) {
                     )
                 )
         ) {
-            Text(
-                text = name.toString(),
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(top = 50.dp)
-                    .padding(horizontal = 16.dp),
-                color = MaterialTheme.colorScheme.onBackground,
-                style = MaterialTheme.typography.titleLarge,
-                textAlign = TextAlign.Center
-            )
+            logo?.let {
+                AsyncImage(
+                    model = it.url,
+                    contentDescription = "$name logo",
+                    contentScale = ContentScale.FillHeight,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(90.dp)
+                        .padding(top = 30.dp)
+                )
+            } ?: run {
+                Text(
+                    text = name.toString(),
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(top = 50.dp)
+                        .padding(horizontal = 16.dp),
+                    color = MaterialTheme.colorScheme.onBackground,
+                    style = MaterialTheme.typography.titleLarge,
+                    textAlign = TextAlign.Center
+                )
+            }
             Text(
                 text = "$year, ${genres.first().name}",
                 modifier = Modifier
@@ -69,17 +81,11 @@ fun MovieDetails(movieInfo: MovieInfoResponse) {
                 style = MaterialTheme.typography.bodySmall,
                 textAlign = TextAlign.Center
             )
-            var isExpanded = false
             Text(
                 text = description.toString(),
                 modifier = Modifier
                     .padding(top = 20.dp)
                     .padding(horizontal = 16.dp),
-//                    .clickable {
-//                        isExpanded = !isExpanded
-//                    },
-//                maxLines = if (isExpanded) Int.MAX_VALUE else 4,
-//                overflow = TextOverflow.Ellipsis,
                 color = MaterialTheme.colorScheme.onBackground,
                 style = MaterialTheme.typography.bodyMedium,
             )

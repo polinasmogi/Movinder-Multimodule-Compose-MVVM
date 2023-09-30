@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName
 
 data class MovieInfoResponse (
 
-//    @SerializedName("videos"              ) var videos              : Videos?                        = Videos(),
+    @SerializedName("videos"              ) var videos              : Videos?                        = Videos(),
     @SerializedName("id"                  ) var id                  : Int?                           = null,
 //    @SerializedName("type"                ) var type                : String?                        = null,
 //    @SerializedName("externalId"          ) var externalId          : ExternalId?                    = ExternalId(),
@@ -17,7 +17,8 @@ data class MovieInfoResponse (
 //    @SerializedName("premiere"            ) var premiere            : Premiere?                      = Premiere(),
 //    @SerializedName("slogan"              ) var slogan              : String?                        = null,
     @SerializedName("year"                ) var year                : Int?                           = null,
-    @SerializedName("poster"              ) var poster              : com.polinasmogi.movie_info_impl.network.info.Poster?                        = com.polinasmogi.movie_info_impl.network.info.Poster(),
+    @SerializedName("poster"              ) var poster              : Poster?                        = null,
+    @SerializedName("logo"                ) var logo                : Logo?                          = null,
 //    @SerializedName("facts"               ) var facts               : ArrayList<String>              = arrayListOf(),
     @SerializedName("genres"              ) var genres              : ArrayList<com.polinasmogi.movie_info_impl.network.info.Genres>              = arrayListOf(),
 //    @SerializedName("countries"           ) var countries           : ArrayList<Countries>           = arrayListOf(),

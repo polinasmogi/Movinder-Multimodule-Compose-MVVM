@@ -2,6 +2,7 @@ package com.polinasmogi.explore.ui
 
 import androidx.compose.foundation.ScrollState
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -14,12 +15,19 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.polinasmogi.explore.models.MovieToExploreModel
+import com.polinasmogi.strings.R
 
 @Composable
-fun MovieItem(movie: MovieToExploreModel) {
+fun MovieItem(
+    movie: MovieToExploreModel,
+    showMoreAction: () -> Unit
+    ) {
     AsyncImage(
         model = movie.posterUrl,
         contentDescription = "${movie.name} logo",
@@ -57,6 +65,15 @@ fun MovieItem(movie: MovieToExploreModel) {
                         .padding(horizontal = 16.dp)
                 )
             }
+            Text(
+                text = stringResource(R.string.show_more_button),
+                style = TextStyle(textDecoration = TextDecoration.Underline),
+                modifier = Modifier
+                    .padding(top = 16.dp, start = 16.dp)
+                    .clickable {
+                        showMoreAction.invoke()
+                    }
+            )
         }
     }
 }

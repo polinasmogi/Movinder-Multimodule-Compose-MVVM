@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Movinder</string>
+    <string name="app_name">Поискиндер</string>
 
     <!-- Bottom bar navigation items -->
     <string name="nav_item_explore">Explore</string>
     <string name="nav_item_partner">Partner</string>
     <string name="nav_item_profile">Profile</string>
+
+    <string name="show_more_button">Описание, актёры, узнать больше…</string>
 </resources>
