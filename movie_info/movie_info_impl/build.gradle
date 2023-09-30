@@ -45,6 +45,7 @@ dependencies {
     implementation project(path: ':core:core_factory')
     implementation project(path: ':ui_atoms')
     implementation project(path: ':uikit')
+    implementation project(path: ':strings')
 
     implementation 'androidx.core:core-ktx:1.10.1'
     implementation 'androidx.appcompat:appcompat:1.6.1'

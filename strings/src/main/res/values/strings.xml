@@ -7,5 +7,14 @@
     <string name="nav_item_partner">Partner</string>
     <string name="nav_item_profile">Profile</string>
 
+    <!-- Movie explorer -->
     <string name="show_more_button">Описание, актёры, узнать больше…</string>
+
+    <!-- Movie details -->
+    <string name="poster_content_description">Постер к фильму %1$s</string>
+    <string name="logo_content_description">Доготип к фильму %1$s</string>
+
+    <!-- UI kit -->
+    <string name="no_button_content_description">Кнопка нет</string>
+    <string name="yes_button_content_description">Кнопка да</string>
 </resources>

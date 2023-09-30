@@ -38,7 +38,7 @@ fun MovieItem(
         Modifier
             .fillMaxSize()
             .verticalScroll(ScrollState(0))
-            .padding(top = 430.dp, bottom = 80.dp)
+            .padding(top = 430.dp, bottom = 120.dp)
             .background(
                 brush = Brush.verticalGradient(
                     colors = listOf(

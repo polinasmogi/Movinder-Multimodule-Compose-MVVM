@@ -18,11 +18,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
+import com.polinasmogi.movie_info_impl.data.MovieInfoSampleData
 import com.polinasmogi.movie_info_impl.network.info.MovieInfoResponse
+import com.polinasmogi.strings.R
 import com.polinasmogi.ui_atoms.theme.MovinderTheme
 
 @Composable
@@ -30,9 +33,10 @@ fun MovieDetails(movieInfo: MovieInfoResponse) {
     movieInfo.apply {
         AsyncImage(
             model = poster?.url,
-            contentDescription = "$name poster",
+            contentDescription = stringResource(R.string.poster_content_description, name.orEmpty()),
             contentScale = ContentScale.FillWidth,
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier
+                .fillMaxWidth()
                 .height(300.dp)
         )
         Column(
@@ -53,7 +57,7 @@ fun MovieDetails(movieInfo: MovieInfoResponse) {
             logo?.let {
                 AsyncImage(
                     model = it.url,
-                    contentDescription = "$name logo",
+                    contentDescription = stringResource(R.string.logo_content_description, name.orEmpty()),
                     contentScale = ContentScale.FillHeight,
                     modifier = Modifier
                         .fillMaxWidth()
@@ -107,6 +111,6 @@ fun MovieDetails(movieInfo: MovieInfoResponse) {
 @Composable
 fun MovieDetailsPreview() {
     MovinderTheme {
-//        MovieDetails(SampleData.movieDetails)
+        MovieDetails(MovieInfoSampleData.movieDetails)
     }
 }

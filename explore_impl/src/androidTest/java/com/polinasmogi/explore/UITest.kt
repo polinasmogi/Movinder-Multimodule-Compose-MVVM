@@ -56,7 +56,6 @@ class UITest {
             performTouchInput { swipeUp() }
         }
 
-
         composeTestRule.onNodeWithText(DataFactory.genresString).assertIsDisplayed()
         composeTestRule.onNodeWithText(DataFactory.longDescription).assertIsDisplayed()
         composeTestRule.onNodeWithText(DataFactory.showMoreButtonText).assertIsDisplayed()
