@@ -1,5 +1,6 @@
-package com.polinasmogi.partner.ui
+package com.polinasmogi.explore.ui
 
+import android.content.res.Configuration
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -15,12 +16,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.polinasmogi.partner.R
+import com.polinasmogi.explore.R
+import com.polinasmogi.ui_atoms.theme.MovinderTheme
 
 @Composable
-fun PartnerScreen() {
+fun EmptyList() {
     Column(
         modifier = Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Center,
@@ -28,16 +30,23 @@ fun PartnerScreen() {
     ) {
         Image(
             modifier = Modifier.width(90.dp).height(90.dp),
-            painter = painterResource(id = R.drawable.ic_tickets),
+            painter = painterResource(id = R.drawable.ic_sad_mask),
             colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.onBackground),
-            contentDescription = stringResource(com.polinasmogi.strings.R.string.partner_icon_content_description)
+            contentDescription = stringResource(com.polinasmogi.strings.R.string.empty_list_icon_content_description)
         )
         Spacer(modifier = Modifier.height(24.dp))
         Text(
-            text = stringResource(id = com.polinasmogi.strings.R.string.partner_description),
+            text = stringResource(id = com.polinasmogi.strings.R.string.empty_list_description),
             color = MaterialTheme.colorScheme.onBackground,
-            textAlign = TextAlign.Center,
             style = MaterialTheme.typography.bodyLarge
         )
+    }
+}
+
+@Preview(uiMode = Configuration.UI_MODE_NIGHT_YES, showBackground = false)
+@Composable
+fun EmptyListPreview() {
+    MovinderTheme {
+        EmptyList()
     }
 }

@@ -27,7 +27,7 @@ fun SavedMovieItem(
     Column(
         modifier = Modifier
             .clickable { onMovieClick.invoke(movie.id) }
-            .padding(vertical = 8.dp, horizontal = 16.dp)
+            .padding(vertical = 8.dp)
             .fillMaxWidth()
     ) {
         Row(
@@ -46,9 +46,12 @@ fun SavedMovieItem(
                 ) {
                     Text(
                         text = name,
-                        style = MaterialTheme.typography.titleLarge
+                        style = MaterialTheme.typography.titleMedium
                     )
-                    Text(genresString.orEmpty())
+                    Text(
+                        text = genresString.orEmpty(),
+                        style = MaterialTheme.typography.labelMedium
+                    )
                 }
             }
         }

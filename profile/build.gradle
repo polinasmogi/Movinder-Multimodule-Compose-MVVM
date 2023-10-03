@@ -46,6 +46,7 @@ dependencies {
     implementation project(path: ':core:core_api')
     implementation project(path: ':movies_api')
     implementation project(path: ':movies_factory')
+    implementation project(path: ':strings')
 
     implementation 'androidx.core:core-ktx:1.8.0'
     implementation 'androidx.appcompat:appcompat:1.6.1'

@@ -50,14 +50,22 @@ class ExploreViewModel
 
     private fun getMovies(page: Int? = null) {
         scope.launch {
-            val moviesToExplore = async { interactor.getMoviesToExplore(page) }
-            this@ExploreViewModel.movies.addAll(moviesToExplore.await())
-            viewModelState.update {
-                it.copy(
-                    loading = false,
-                    movie = movies.first(),
-                    movieIndex = 0
-                )
+            val moviesToExplore = async { interactor.getMoviesToExplore(page) }.await()
+            if (moviesToExplore.isEmpty()) {
+                viewModelState.update {
+                    it.copy(
+                        loading = false
+                    )
+                }
+            } else {
+                this@ExploreViewModel.movies.addAll(moviesToExplore)
+                viewModelState.update {
+                    it.copy(
+                        loading = false,
+                        movie = movies.first(),
+                        movieIndex = 0
+                    )
+                }
             }
         }
     }

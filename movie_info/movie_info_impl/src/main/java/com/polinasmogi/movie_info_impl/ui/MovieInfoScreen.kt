@@ -26,7 +26,8 @@ fun MovieInfoScreen(
             LoaderComposable()
         }
         is MovieInfoUiState.MovieInfo -> {
-            MovieDetails((uiState as MovieInfoUiState.MovieInfo).movie)
+            val state = uiState as MovieInfoUiState.MovieInfo
+            MovieDetails(movieInfo = state.movie) { viewModel.onYesClicked(state.movie) }
         }
     }
 }

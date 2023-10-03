@@ -6,9 +6,7 @@ sealed interface ExploreUiState {
 
     object Loading : ExploreUiState
 
-    data class NoMovies(
-        val errorMessage: String
-    ) : ExploreUiState
+    object NoMovies : ExploreUiState
 
     data class MovieCard(
         val movie: MovieToExploreModel,

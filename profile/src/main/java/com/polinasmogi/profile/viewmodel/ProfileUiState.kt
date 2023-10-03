@@ -6,9 +6,7 @@ sealed interface ProfileUiState {
 
     object Loading : ProfileUiState
 
-    data class NoMovies(
-        val errorMessage: String
-    ) : ProfileUiState
+    object NoMovies : ProfileUiState
 
     data class MovieList(
         val movies: List<LikedMovieModel>

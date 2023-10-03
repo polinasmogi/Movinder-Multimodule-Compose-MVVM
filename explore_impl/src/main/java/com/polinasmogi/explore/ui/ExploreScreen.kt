@@ -32,7 +32,7 @@ fun ExploreScreen(
             )
         }
         is ExploreUiState.NoMovies -> {
-            //show empty list
+            EmptyList()
         }
         is ExploreUiState.Error -> {
             val state = uiState as ExploreUiState.Error

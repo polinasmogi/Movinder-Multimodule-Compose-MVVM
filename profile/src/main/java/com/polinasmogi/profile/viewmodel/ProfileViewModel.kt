@@ -38,11 +38,19 @@ class ProfileViewModel
             val movies = withContext(ioDispatcher) {
                 interactor.getSavedMovies()
             }
-            viewModelState.update {
-                it.copy(
-                    loading = false,
-                    movies = movies
-                )
+            if (movies.isNotEmpty()) {
+                viewModelState.update {
+                    it.copy(
+                        loading = false,
+                        movies = movies
+                    )
+                }
+            } else {
+                viewModelState.update {
+                    it.copy(
+                        loading = false
+                    )
+                }
             }
         }
     }

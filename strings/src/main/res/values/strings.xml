@@ -9,12 +9,27 @@
 
     <!-- Movie explorer -->
     <string name="show_more_button">Описание, актёры, узнать больше…</string>
+    <string name="empty_list_icon_content_description">Грустная маска</string>
+    <string name="empty_list_description">Фильмы закончились</string>
 
     <!-- Movie details -->
     <string name="poster_content_description">Постер к фильму %1$s</string>
     <string name="logo_content_description">Доготип к фильму %1$s</string>
 
+    <!-- Profile -->
+    <string name="profile_empty_list_icon_content_description">Радостная маска</string>
+    <string name="profile_empty_list_description">Здесь будут сохранённые фильмы</string>
+    <string name="movie_list_title">Привет, Андрей! Это фильмы, которые вам понравились</string>
+
+    <!-- Partner -->
+    <string name="partner_icon_content_description">Билеты</string>
+    <string name="partner_description">Выбирайте фильмы\nсо своим партнёром\n\nComing soon!</string>
+
+    <!-- Info -->
+    <string name="save_button">Хочу посмотреть</string>
+
     <!-- UI kit -->
     <string name="no_button_content_description">Кнопка нет</string>
     <string name="yes_button_content_description">Кнопка да</string>
+
 </resources>

@@ -25,7 +25,7 @@ class ExploreMoviesRepositoryImpl
 
     private suspend fun getMoviesFromServer(page: Int): List<MovieToExploreModel> {
         moviesApi
-            .getMovies(page.toString(), country = "Корея Южная", type = "tv-series")
+            .getMovies(page.toString(), country = null, type = null)
             .docs
             .filter { it.countries.size == 1 }
             .apply {

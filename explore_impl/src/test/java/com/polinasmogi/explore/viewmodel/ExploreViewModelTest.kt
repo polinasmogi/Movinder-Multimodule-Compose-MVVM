@@ -5,6 +5,7 @@ import com.polinasmogi.explore.DataFactory.movie2
 import com.polinasmogi.explore.DataFactory.movieList
 import com.polinasmogi.explore.MainDispatcherRule
 import com.polinasmogi.explore.interactor.ExploreInteractor
+import com.polinasmogi.explore.models.MovieToExploreModel
 import kotlinx.coroutines.test.runTest
 import org.junit.After
 import org.junit.Assert.assertEquals
@@ -42,6 +43,24 @@ class ExploreViewModelTest {
         assertEquals(movieList, viewModel.getMoviesForTest())
         assertEquals(
             ExploreUiState.MovieCard(movie1, 0),
+            viewModel.uiState.value
+        )
+    }
+
+
+    @Test
+    fun `show error, if list is empty`() = runTest {
+        // given
+        whenever(interactor.getMoviesToExplore(null)).thenReturn(listOf())
+
+        // when
+        viewModel = ExploreViewModel(interactor, mainDispatcherRule.testDispatcher)
+
+        // then
+        verify(interactor).getMoviesToExplore(null)
+        assertEquals(listOf<MovieToExploreModel>(), viewModel.getMoviesForTest())
+        assertEquals(
+            ExploreUiState.NoMovies,
             viewModel.uiState.value
         )
     }

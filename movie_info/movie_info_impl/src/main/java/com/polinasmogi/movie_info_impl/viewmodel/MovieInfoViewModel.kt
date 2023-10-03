@@ -3,9 +3,10 @@ package com.polinasmogi.movie_info_impl.viewmodel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.polinasmogi.movie_info_impl.interactor.MovieInfoInteractor
-import com.polinasmogi.moviesapi.model.LikedMovieModel
+import com.polinasmogi.movie_info_impl.network.info.MovieInfoResponse
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineExceptionHandler
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.map
@@ -21,6 +22,16 @@ class MovieInfoViewModel
     private val ioDispatcher: CoroutineDispatcher
 ) : ViewModel() {
 
+    private val handler = CoroutineExceptionHandler { _, t ->
+        viewModelState.update {
+            it.copy(
+                loading = false,
+                errorMessage = t.localizedMessage
+            )
+        }
+    }
+    private val scope = CoroutineScope(ioDispatcher + handler)
+
     private val viewModelState = MutableStateFlow(MovieInfoViewModelState(loading = true))
 
     val uiState = viewModelState
@@ -33,7 +44,7 @@ class MovieInfoViewModel
 
     fun getMovieById(movieId: Int?) {
         movieId?.let { id ->
-            viewModelScope.launch(ioDispatcher) {
+            scope.launch {
                 val movie = withContext(ioDispatcher) {
                     interactor.getMovieById(id)
                 }
@@ -47,49 +58,9 @@ class MovieInfoViewModel
         }
     }
 
-    fun onYesClicked(movie: LikedMovieModel, movieIndex: Int) {
-        viewModelScope.launch(ioDispatcher) {
-//            interactor.onMovieLiked(movie)
-            viewModelState.update {
-                it.copy(
-//                    movie = movies[movieIndex + 1],
-//                    movieIndex = movieIndex + 1,
-//                    selectedMovie = null
-                )
-            }
-        }
-    }
-
-    fun onNoClicked(movieIndex: Int) {
-        try {
-            viewModelState.update {
-                it.copy(
-//                    movie = movies[movieIndex + 1],
-//                    movieIndex = movieIndex + 1,
-//                    selectedMovie = null
-                )
-            }
-        } catch (e: IndexOutOfBoundsException) {
-            viewModelScope.launch(ioDispatcher) {
-//                getMovies()
-            }
-        }
-    }
-
-    fun onBackPressed() {
-        viewModelState.update {
-            it.copy(
-//                selectedMovie = null
-            )
-        }
-    }
-
-    private val handler = CoroutineExceptionHandler { _, _ ->
-        viewModelState.update {
-            it.copy(
-                loading = false,
-                errorMessage = "Errorr oror oor"
-            )
+    fun onYesClicked(movie: MovieInfoResponse) {
+        scope.launch() {
+            interactor.onMovieLiked(movie)
         }
     }
 }

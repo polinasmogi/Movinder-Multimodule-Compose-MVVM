@@ -1,4 +1,4 @@
-package com.polinasmogi.partner.ui
+package com.polinasmogi.profile.ui
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
@@ -15,28 +15,26 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import com.polinasmogi.partner.R
+import com.polinasmogi.profile.R
 
 @Composable
-fun PartnerScreen() {
+fun EmptyList() {
     Column(
-        modifier = Modifier.fillMaxSize(),
-        verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally
+    modifier = Modifier.fillMaxSize(),
+    verticalArrangement = Arrangement.Center,
+    horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Image(
             modifier = Modifier.width(90.dp).height(90.dp),
-            painter = painterResource(id = R.drawable.ic_tickets),
+            painter = painterResource(id = R.drawable.ic_happy_mask),
             colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.onBackground),
-            contentDescription = stringResource(com.polinasmogi.strings.R.string.partner_icon_content_description)
+            contentDescription = stringResource(com.polinasmogi.strings.R.string.profile_empty_list_icon_content_description)
         )
         Spacer(modifier = Modifier.height(24.dp))
         Text(
-            text = stringResource(id = com.polinasmogi.strings.R.string.partner_description),
+            text = stringResource(id = com.polinasmogi.strings.R.string.profile_empty_list_description),
             color = MaterialTheme.colorScheme.onBackground,
-            textAlign = TextAlign.Center,
             style = MaterialTheme.typography.bodyLarge
         )
     }

@@ -11,9 +11,11 @@ import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
@@ -29,7 +31,10 @@ import com.polinasmogi.strings.R
 import com.polinasmogi.ui_atoms.theme.MovinderTheme
 
 @Composable
-fun MovieDetails(movieInfo: MovieInfoResponse) {
+fun MovieDetails(
+    movieInfo: MovieInfoResponse,
+    action: () -> Unit
+) {
     movieInfo.apply {
         AsyncImage(
             model = poster?.url,
@@ -85,6 +90,17 @@ fun MovieDetails(movieInfo: MovieInfoResponse) {
                 style = MaterialTheme.typography.bodySmall,
                 textAlign = TextAlign.Center
             )
+            Button(
+                onClick = { action.invoke() },
+                modifier = Modifier
+                    .height(56.dp)
+                    .align(Alignment.CenterHorizontally)
+                    .padding(top = 16.dp)
+            ) {
+                Text(
+                    text = stringResource(R.string.save_button)
+                )
+            }
             Text(
                 text = description.toString(),
                 modifier = Modifier
@@ -111,6 +127,6 @@ fun MovieDetails(movieInfo: MovieInfoResponse) {
 @Composable
 fun MovieDetailsPreview() {
     MovinderTheme {
-        MovieDetails(MovieInfoSampleData.movieDetails)
+        MovieDetails(MovieInfoSampleData.movieDetails, {})
     }
 }
