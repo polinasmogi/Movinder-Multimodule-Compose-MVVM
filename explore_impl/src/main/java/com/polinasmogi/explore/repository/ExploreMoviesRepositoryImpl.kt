@@ -27,7 +27,6 @@ class ExploreMoviesRepositoryImpl
         moviesApi
             .getMovies(page.toString(), country = null, type = null)
             .docs
-            .filter { it.countries.size == 1 }
             .apply {
                 moviesDao.insertMoviesToExplore(this.toEntities(page))
                 return this.docListToModels(page)

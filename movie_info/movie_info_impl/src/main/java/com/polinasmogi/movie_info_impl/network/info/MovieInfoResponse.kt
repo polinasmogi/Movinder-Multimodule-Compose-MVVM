@@ -5,14 +5,14 @@ import com.google.gson.annotations.SerializedName
 
 data class MovieInfoResponse (
 
-    @SerializedName("id"                  ) var id                  : Int?                           = null,
-    @SerializedName("name"                ) var name                : String?                        = null,
-    @SerializedName("description"         ) var description         : String?                        = null,
-    @SerializedName("year"                ) var year                : Int?                           = null,
-    @SerializedName("poster"              ) var poster              : Poster?                        = null,
-    @SerializedName("logo"                ) var logo                : Logo?                          = null,
-    @SerializedName("genres"              ) var genres              : ArrayList<Genres>              = arrayListOf(),
-    @SerializedName("persons"             ) var persons             : ArrayList<Person>              = arrayListOf(),
+    @SerializedName("id"                  ) var id                  : Int?         = null,
+    @SerializedName("name"                ) var name                : String?      = null,
+    @SerializedName("description"         ) var description         : String?      = null,
+    @SerializedName("year"                ) var year                : Int?         = null,
+    @SerializedName("poster"              ) var poster              : Poster?      = null,
+    @SerializedName("logo"                ) var logo                : Logo?        = null,
+    @SerializedName("genres"              ) var genres              : List<Genres> = arrayListOf(),
+    @SerializedName("persons"             ) var persons             : List<Person> = arrayListOf(),
 
     // uncomment that fields when ui will be ready
 //    @SerializedName("videos"              ) var videos              : Videos?                        = Videos(),
